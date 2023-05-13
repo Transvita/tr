@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Medical Research Website</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-  </head>
+ <head>
+  ...
+  <!-- YouTube API script -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    // This function creates an <iframe> (and YouTube player)
+    // after the API code downloads.
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        videoId: 'dQw4w9WgXcQ',
+        playerVars: {
+          'autoplay': 1,
+          'controls': 0,
+          'mute': 1,
+          'loop': 1,
+          'modestbranding': 1,
+          'showinfo': 0
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        player.playVideo();
+      }
+    }
+  </script>
+  ...
+</head>
   <body>
     <header>
       <nav>
